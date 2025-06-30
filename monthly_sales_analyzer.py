@@ -24,27 +24,78 @@ sales_data = [
 
 def total_sales_by_product(data, product_key):
     """Calculates the total sales of a specific product in 30 days."""
-    pass
-
+    suma = 0
+    for i in data:
+        valor = i[product_key]
+        suma += valor
+    return suma
+      
+import pandas as pd
 
 def average_daily_sales(data, product_key):
     """Calculates the average daily sales of a specific product."""
-    pass
-
+    suma = 0
+    for i in data:
+        valor = i[product_key]
+        suma += valor
+    return suma / len(data)
 
 def best_selling_day(data):
     """Finds the day with the highest total sales."""
-    pass
-
+    day_sales = []
+    for i in data:
+        total_day = i['product_a'] + i['product_b'] + i['product_c']
+        day_sales.append(total_day)
+    
+    max_index = day_sales.index(max(day_sales))
+    
+    best_day = data[max_index]['day']
+    
+    return best_day
 
 def days_above_threshold(data, product_key, threshold):
     """Counts how many days the sales of a product exceeded a given threshold."""
-    pass
+    day_sales_produt_c = []
+    for i in data:
+        total_day = i[product_key]
+        day_sales_produt_c.append(total_day)
+    
+    index_days = []
+    for e in day_sales_produt_c:
+        if e > threshold:
+            index_days.append(day_sales_produt_c.index(e))
+    
+    final_days = []
+    for x in index_days:
+        final_days.append(data[x]['day'])
 
+
+    return final_days
 
 def top_product(data):
     """Determines which product had the highest total sales in 30 days."""
-    pass
+    total_a = 0
+    total_b = 0
+    total_c = 0
+
+    for i in data:
+        total_a += i['product_a']
+    
+    for i in data:
+        total_b += i['product_b']
+
+    for i in data:
+        total_c += i['product_c']
+
+    highest_sales = max(total_a, total_b, total_c)
+
+    if highest_sales == total_a:
+        return "product_a"
+    elif highest_sales == total_b:
+        return "product_b"
+    else:
+        return "product_c" 
+
 
 
 
